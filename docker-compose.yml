@@ -1,0 +1,38 @@
+version: '3.0'
+
+services:
+  localstack:
+    container_name: insta-gift-localstack
+    image: localstack/localstack:3.0
+    environment:
+      - LOCALSTACK_SERVICES=s3,sqs,sns,dynamodb,dynamodbstreams,lambda,cloudformation,sts,iam,secretsmanager
+      - AWS_DEFAULT_REGION=us-east-2
+      - EDGE_PORT=4566
+      - LOCALSTACK_DEBUG=true
+    network_mode: bridge
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    volumes:
+      - "${TMPDIR:-/tmp}/localstack:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+  adminer:
+    image: adminer
+    container_name: insta-gift-api-adminer
+    ports:
+      - 8080:8080
+  postgres:
+    image: postgres:10-alpine
+    container_name: insta-gift-api-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # POSTGRES_DB: insta-gift-api
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+volumes:
+  pgdata:
+    name: insta-gift-api
