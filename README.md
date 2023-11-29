@@ -21,11 +21,29 @@ Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
   ```bash
     git clone https://github.com/Gabukurp/insta-gift-localstack.git
   ```
-
-2. Navegue até o diretório do projeto:
-
   ```bash
     cd insta-gift-localstack
+  ```
+
+2. Adicione as credenciais do localstack:
+  ```bash
+  mkdir -p ~/.aws
+  ```
+
+  ```bash
+  cat <<EOT >> ~/.aws/config
+  [default]
+  region=us-east-2
+  output=json
+  EOT
+  ```
+
+  ```bash
+  cat <<EOT >> ~/.aws/config
+  [localstack-profile]
+  aws_access_key_id=test
+  aws_secret_access_key=test
+  EOT
   ```
 
 3. Inicie os contêineres Docker usando o Docker Compose:
