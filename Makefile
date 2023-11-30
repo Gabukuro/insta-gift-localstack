@@ -4,7 +4,7 @@ REPOS = \
     https://github.com/Gabukuro/insta-gift-app,vuejs \
     https://github.com/Gabukuro/object-detection-service.git,python
 
-.PHONY: clone install-deps
+.PHONY: clone run-localstack terraform-init terraform-apply
 
 clone:
 	@echo "Clonando repositórios..."
@@ -17,3 +17,13 @@ clone:
 		cd -; \
 	done
 
+run-localstack:
+	@docker-compose up -d
+
+terraform-init:
+	@terraform init
+
+terraform-apply:
+	@terraform apply -auto-approve
+
+deploy: run-localstack terraform-init terraform-apply
