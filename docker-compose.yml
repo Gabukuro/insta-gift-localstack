@@ -26,8 +26,7 @@ services:
     container_name: insta-gift-api-postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      # POSTGRES_DB: insta-gift-api
+      POSTGRES_DB: insta-gift-api
       POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - pgdata:/var/lib/postgresql/data

@@ -2,7 +2,7 @@
 REPOS = \
     https://github.com/Gabukuro/insta-gift-api.git,go \
     https://github.com/Gabukuro/insta-gift-app,vuejs \
-    https://github.com/Gabukuro/object-detection-service.git,python
+    https://github.com/Gabukuro/gift-prediction-service.git,python
 
 .PHONY: clone run-localstack terraform-init terraform-apply
 
